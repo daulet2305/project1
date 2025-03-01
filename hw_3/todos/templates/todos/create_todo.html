@@ -1,0 +1,21 @@
+<h1>Todo List</h1>
+
+<ul>
+    {% for todo in todos %}
+        <li>
+            <strong>{{ todo.title }}</strong><br>
+            {{ todo.description }}<br>
+            Due Date: {{ todo.due_date }}<br>
+            {% if todo.status %}
+                <span style="color: green;">Completed</span>
+            {% else %}
+                <span style="color: red;">Pending</span>
+            {% endif %}
+            <br>
+            <a href="{% url 'delete_todo' todo.id %}">Delete</a>
+        </li>
+    {% empty %}
+        <li>No todos available.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'create_todo' %}">Add a new Todo</a>
